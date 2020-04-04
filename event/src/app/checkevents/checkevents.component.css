@@ -1,0 +1,9 @@
+.example-card {
+    max-width: 800px;
+  }
+  
+  .example-header-image {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/4/42/Sree_Vidyanikethan_Logo.png);
+    background-size: cover;
+  }
+  

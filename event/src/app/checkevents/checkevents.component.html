@@ -1,0 +1,275 @@
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title  mat-flat-button (click)="onsubmit()" >
+          Check Events
+        </mat-panel-title>
+      </mat-expansion-panel-header> 
+
+
+<!-- starting code for ongoing events -->
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header style="background-color: greenyellow;">
+            <mat-panel-title>
+              Ongoing events
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <br>
+          <div *ngIf="array.length>0">
+            <div *ngFor="let i of array">
+              <div *ngIf=" updateDate >= i[2] && updateDate <= i[3]">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header style="background-color: lightcyan;">
+                        <mat-panel-title>
+                          {{i[0]}}
+                        </mat-panel-title>
+                        
+                      </mat-expansion-panel-header>
+                  
+                      <mat-card class="example-card">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title >
+                            <mat-label>{{i[0]}}</mat-label>
+                        </mat-card-title>
+                           
+                        <mat-card-subtitle>
+                            <mat-label>{{i[1]}}</mat-label>
+                          </mat-card-subtitle>
+                        </mat-card-header>
+                        
+                          <mat-card-subtitle> 
+                            <mat-label> Event Started at : {{i[2]|date:'yyyy-MM-dd HH:mm:ss'}}</mat-label>
+                            <br>
+                            <br>
+                             
+                            <mat-label> Events End at :{{i[3]|date:'yyyy-MM-dd HH:mm:ss'}}</mat-label>
+                          </mat-card-subtitle>
+                
+                          <mat-card-subtitle>
+                            <mat-label>{{i[4]}</mat-label>
+                          </mat-card-subtitle>
+                
+                          <mat-card-content>
+                            <mat-label>{{i[5]}}</mat-label>
+                          </mat-card-content>
+                          <mat-card-footer>
+                            <mat-label>Contact us</mat-label>
+                            <br>
+                              <mat-label> svecp@vidyanikethan.edu</mat-label>
+                            
+                          </mat-card-footer>
+                      
+                    </mat-card>
+                   
+                    
+                    </mat-expansion-panel>
+                   
+                  </mat-accordion><br>
+                <br>
+              </div>
+            </div>
+          </div>
+          
+
+        </mat-expansion-panel>
+      </mat-accordion><br>
+<!-- end of the ongoing events code -->
+
+
+<!-- starting code for future events -->
+
+
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header style="background-color:lightsteelblue;">
+            <mat-panel-title>
+              Future events
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div *ngIf="array.length>0">
+            <div *ngFor="let i of array">
+              <div *ngIf=" updateDate < i[2]">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header style="background-color: lightblue">
+                        <mat-panel-title>
+                          {{i[0]}}
+                        </mat-panel-title>
+                        
+                      </mat-expansion-panel-header>
+                  
+                      <mat-card class="example-card">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title >
+                            <mat-label>{{i[0]}}</mat-label>
+                        </mat-card-title>
+                           
+                        <mat-card-subtitle>
+                            <mat-label>{{i[1]}}</mat-label>
+                          </mat-card-subtitle>
+                        </mat-card-header>
+                          <mat-card-subtitle> 
+                            <mat-label>Event Starts at :{{i[2]|date:'yyyy-MM-dd HH:mm:ss'}}</mat-label>
+                            <br>
+                            <br>
+                             
+                            <mat-label>Event Ends at : {{i[3]|date:'yyyy-MM-dd HH:mm:ss'}}</mat-label>
+                          </mat-card-subtitle>
+                
+                          <mat-card-subtitle>
+                            <mat-label>Venue : {{i[4]}}</mat-label>
+                          </mat-card-subtitle>
+                
+                          <mat-card-content>
+                            <mat-label>{{i[5]}}</mat-label>
+                          </mat-card-content>
+                          <mat-action-row>
+                            <button mat-button mat-raised-button color="primary" (click)="register(i[0])">Register</button>
+                          </mat-action-row>
+                          <mat-card *ngIf="open">
+                            <form (submit)="formSubmit(eventform)" #eventform="ngForm">
+                            <mat-form-field>
+                              <mat-label> UserName :</mat-label>
+                              <input matInput type="email" name="name" ngModel required minlength="3" #name="ngModel">
+                              <mat-error *ngIf="name.invalid">Please enter  Name</mat-error>
+                          </mat-form-field>
+
+                          <mat-form-field>
+                           <mat-label>EMail:</mat-label>
+                                  <input matInput type="email" name="email" ngModel required minlength="3" #email="ngModel">
+                                  <mat-error *ngIf="email.invalid">Please enter </mat-error>
+                          </mat-form-field>
+                            <button mat-button mat-raised-button color="primary" (click)="onsubmit()">Register</button>
+                        </form>
+                          </mat-card><br>
+                          
+                          <mat-card-footer>
+                            <mat-label>Contact us</mat-label>
+                            <br>
+                              <mat-label> svecp@vidyanikethan.edu</mat-label>
+                            
+                          </mat-card-footer>
+                    </mat-card>
+                   
+                    
+
+                    </mat-expansion-panel>
+                   
+                  </mat-accordion><br>
+                <br>
+              </div>
+            </div>
+          </div>
+
+
+        </mat-expansion-panel>
+      </mat-accordion><br>
+
+
+      <mat-accordion >
+        <mat-expansion-panel >
+          <mat-expansion-panel-header style="background-color: lightcoral;">
+            <mat-panel-title>
+              Past events
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+
+          <div *ngIf="array.length>0">
+            <div *ngFor="let i of array">
+              <div *ngIf=" updateDate >i[3]">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header style="background-color: lightblue">
+                        <mat-panel-title>
+                          {{i[0]}}
+                        </mat-panel-title>
+                        
+                      </mat-expansion-panel-header>
+                  
+                      <mat-card class="example-card">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title >
+                            <mat-label>{{i[0]}}</mat-label>
+                        </mat-card-title>
+                           
+                        <mat-card-subtitle>
+                            <mat-label>{{i[1]}}</mat-label>
+                          </mat-card-subtitle>
+                        </mat-card-header>
+
+                          <mat-card-subtitle> 
+                            <mat-label>Event Started at :{{i[2]|date:'yyyy-MM-dd HH:mm:ss'}}</mat-label>
+                            <br>
+                            <br>
+                             
+                            <mat-label>Event Ended at : {{i[3]|date:'yyyy-MM-dd HH:mm:ss'}}</mat-label>
+                          </mat-card-subtitle>
+                
+                          <mat-card-subtitle>
+                            <mat-label>Venue :  {{i[4]}}</mat-label>
+                          </mat-card-subtitle>
+                
+                          <mat-card-content>
+                            <mat-label>{{i[5]}}</mat-label>
+                          </mat-card-content>
+                          <mat-card-footer>
+                            <mat-label>Contact us</mat-label>
+                            <br>
+                              <mat-label> svecp@vidyanikethan.edu</mat-label>
+                            
+                          </mat-card-footer>
+                    </mat-card>
+                   
+                    
+                    </mat-expansion-panel>
+                   
+                  </mat-accordion><br>
+                <br>
+              </div>
+            </div>
+          </div>
+
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+
+<!-- <div *ngIf="open">
+  <form>
+
+  
+  <input type="text">Username
+  <input type="gmail">Gmail
+  <input type="button" (click)="onsubmit()">click
+</form>
+</div>   -->
+  <!-- {{updateDate|date:'yyyy-MM-dd HH:mm:ss'}} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
